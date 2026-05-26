@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: white;
+      overflow-x: hidden;
+
+      /* Background image */
+      background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    /* Dark overlay for readability */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      z-index: -1;
+    }
+
+    header {
+      text-align: center;
+      padding: 100px 20px;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    h1 {
+      font-size: 52px;
+      margin-bottom: 10px;
+      animation: slideDown 1s ease;
+    }
+
+    p {
+      color: #ddd;
+      margin-top: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 15px 10px;
+      padding: 12px 24px;
+      background: #2563eb;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      background: #3b82f6;
+      box-shadow: 0 0 20px rgba(59,130,246,0.5);
+    }
+
+    .btn.secondary {
+      background: #374151;
+    }
+
+    section {
+      max-width: 900px;
+      margin: auto;
+      padding: 60px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.4s; }
+    section:nth-child(4) { animation-delay: 0.6s; }
+    section:nth-child(5) { animation-delay: 0.8s; }
+
+    h2 {
+      font-size: 28px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    h2::after {
+      content: "";
+      width: 60px;
+      height: 3px;
+      background: #2563eb;
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      border-radius: 5px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 18px;
+      border-radius: 12px;
+      transition: 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      border-color: rgba(37,99,235,0.6);
+    }
+
+    footer {
+      text-align: center;
+      padding: 50px;
+      color: #aaa;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Hi, I'm Amanuel Abeje 👋</h1>
+  <p>Web Developer • Designer • C++ Programmer • Java</p>
+  <a class="btn" href="#projects">View Projects</a>
+  <a class="btn secondary" href="#contact">Contact Me</a>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <p>
+    I am a passionate developer who enjoys building websites, designing user interfaces,
+    and solving problems using code. I also have experience in C++ and Web Development. And love building real projects.
+  </p>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">HTML</div>
+    <div class="card">CSS</div>
+    <div class="card">JavaScript</div>
+    <div class="card">C++</div>
+    <div class="card">Java</div>
+    <div class="card">Web Design</div>
+    <div class="card">Python</div>
+    <div class="card">SQL</div>
+    <div class="card">Problem Solving</div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>Projects</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Portfolio Website</h3>
+      <p>My personal responsive portfolio built using HTML & CSS.</p>
+    </div>
+    <div class="card">
+      <h3>C++ Project</h3>
+      <p>A console-based application built using C++ programming.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: www.tplink46@gmail.com</p>
+  <p>GitHub: github.com/Real-habesha</p>
+</section>
+
+<footer>
+  <p>© 2026 Amanuel Abeje. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
