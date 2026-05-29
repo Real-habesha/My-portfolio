@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amanuel Abeje — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- BACKGROUND LAYERS -->
+  <div class="bg-layer"></div>
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-logo">AA</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#home" class="mob-link">Home</a></li>
+      <li><a href="#about" class="mob-link">About</a></li>
+      <li><a href="#skills" class="mob-link">Skills</a></li>
+      <li><a href="#projects" class="mob-link">Projects</a></li>
+      <li><a href="#contact" class="mob-link">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="hero-content">
+      <p class="hero-tag">// Computer Science Student</p>
+      <h1 class="hero-title">
+        <span id="typed-text"></span><span class="cursor">|</span>
+      </h1>
+      <p class="hero-sub">I build things for the web — and sometimes for the fun of it.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-ghost">Get In Touch</a>
+      </div>
+    </div>
+
+    <!-- ROBOT SVG -->
+    <div class="hero-decoration">
+      <svg id="robot-svg" viewBox="0 0 300 380" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+        <defs>
+          <radialGradient id="bodyGrad" cx="50%" cy="40%" r="60%">
+            <stop offset="0%" stop-color="#1a1a2e"/>
+            <stop offset="100%" stop-color="#0a0a0f"/>
+          </radialGradient>
+          <radialGradient id="glowGreen" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#00ff9d" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="#00ff9d" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="glow-filter">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="soft-glow">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+
+        <!-- ambient glow behind robot -->
+        <ellipse cx="150" cy="300" rx="90" ry="20" fill="#00ff9d" opacity="0.06"/>
+        <circle cx="150" cy="180" r="130" fill="url(#glowGreen)" opacity="0.5"/>
+
+        <!-- ANTENNA -->
+        <line x1="150" y1="55" x2="150" y2="30" stroke="#00ff9d" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="150" cy="24" r="7" fill="#00ff9d" filter="url(#glow-filter)">
+          <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="7;9;7" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- HEAD -->
+        <rect x="90" y="55" width="120" height="100" rx="18" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+        <!-- head highlight -->
+        <rect x="100" y="62" width="100" height="30" rx="10" fill="#00ff9d" opacity="0.04"/>
+
+        <!-- EYES GROUP — rotated by JS -->
+        <g id="eyes-group">
+          <!-- left eye socket -->
+          <rect x="104" y="78" width="36" height="28" rx="8" fill="#050510" stroke="#00ff9d" stroke-width="1"/>
+          <!-- left pupil -->
+          <circle id="left-pupil" cx="122" cy="92" r="8" fill="#00ff9d" filter="url(#glow-filter)" opacity="0.9"/>
+          <circle id="left-pupil-inner" cx="122" cy="92" r="4" fill="#fff" opacity="0.9"/>
+
+          <!-- right eye socket -->
+          <rect x="160" y="78" width="36" height="28" rx="8" fill="#050510" stroke="#00ff9d" stroke-width="1"/>
+          <!-- right pupil -->
+          <circle id="right-pupil" cx="178" cy="92" r="8" fill="#00ff9d" filter="url(#glow-filter)" opacity="0.9"/>
+          <circle id="right-pupil-inner" cx="178" cy="92" r="4" fill="#fff" opacity="0.9"/>
+        </g>
+
+        <!-- MOUTH / display panel -->
+        <rect x="110" y="120" width="80" height="22" rx="6" fill="#050510" stroke="#00ff9d" stroke-width="1"/>
+        <!-- scrolling text in mouth -->
+        <clipPath id="mouth-clip"><rect x="112" y="122" width="76" height="18" rx="4"/></clipPath>
+        <text font-family="Space Mono" font-size="9" fill="#00ff9d" opacity="0.8" clip-path="url(#mouth-clip)">
+          <tspan x="115" y="134">HELLO WORLD_</tspan>
+          <animate attributeName="x" values="115;30;115" dur="4s" repeatCount="indefinite"/>
+        </text>
+
+        <!-- NECK -->
+        <rect x="135" y="155" width="30" height="18" rx="4" fill="#111122" stroke="#00ff9d" stroke-width="1" opacity="0.8"/>
+
+        <!-- BODY -->
+        <rect x="75" y="170" width="150" height="110" rx="16" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+        <!-- body panel lines -->
+        <line x1="150" y1="178" x2="150" y2="272" stroke="#00ff9d" stroke-width="0.5" opacity="0.2"/>
+        <rect x="88" y="185" width="50" height="40" rx="8" fill="#050510" stroke="#00ff9d" stroke-width="1" opacity="0.8"/>
+        <!-- chest screen glow -->
+        <rect x="90" y="187" width="46" height="36" rx="6" fill="#00ff9d" opacity="0.04"/>
+        <!-- chest screen content -->
+        <text x="113" y="200" text-anchor="middle" font-family="Space Mono" font-size="7" fill="#00ff9d" opacity="0.7">&lt;/Ze&gt;</text>
+        <line x1="91" y1="207" x2="135" y2="207" stroke="#00ff9d" stroke-width="0.5" opacity="0.4"/>
+        <text x="113" y="218" text-anchor="middle" font-family="Space Mono" font-size="6" fill="#00ff9d" opacity="0.5">CS 3rd yr</text>
+
+        <!-- power button -->
+        <circle cx="185" cy="205" r="14" fill="#050510" stroke="#00ff9d" stroke-width="1"/>
+        <circle cx="185" cy="205" r="8" fill="#00ff9d" opacity="0.15"/>
+        <path d="M185 198 L185 205" stroke="#00ff9d" stroke-width="2" stroke-linecap="round"/>
+        <path d="M180 200 A7 7 0 1 0 190 200" fill="none" stroke="#00ff9d" stroke-width="1.5" stroke-linecap="round"/>
+
+        <!-- belly dots -->
+        <circle cx="110" cy="250" r="3" fill="#00ff9d" opacity="0.5">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="125" cy="250" r="3" fill="#00ff9d" opacity="0.5">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="140" cy="250" r="3" fill="#00ff9d" opacity="0.5">
+          <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" begin="0.8s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- LEFT ARM -->
+        <rect x="38" y="175" width="34" height="90" rx="14" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+        <rect x="44" y="195" width="22" height="12" rx="4" fill="#00ff9d" opacity="0.08"/>
+        <!-- left hand -->
+        <ellipse cx="55" cy="272" rx="16" ry="10" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.2"/>
+
+        <!-- RIGHT ARM -->
+        <rect x="228" y="175" width="34" height="90" rx="14" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+        <rect x="234" y="195" width="22" height="12" rx="4" fill="#00ff9d" opacity="0.08"/>
+        <!-- right hand -->
+        <ellipse cx="245" cy="272" rx="16" ry="10" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.2"/>
+
+        <!-- LEGS -->
+        <rect x="105" y="278" width="35" height="70" rx="12" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+        <rect x="160" y="278" width="35" height="70" rx="12" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.5"/>
+
+        <!-- FEET -->
+        <ellipse cx="122" cy="352" rx="22" ry="10" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.2"/>
+        <ellipse cx="178" cy="352" rx="22" ry="10" fill="url(#bodyGrad)" stroke="#00ff9d" stroke-width="1.2"/>
+
+        <!-- scan line effect -->
+        <rect x="75" y="170" width="150" height="4" fill="#00ff9d" opacity="0.06">
+          <animate attributeName="y" values="170;280;170" dur="3s" repeatCount="indefinite"/>
+        </rect>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">01 / About</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <h2 class="section-title">Who I Am</h2>
+        <p>I'm Amanuel Abeje — a third-year Computer Science student based in Hawassa, Ethiopia. I'm passionate about software development, problem solving, and creating things that are both functional and thoughtful.</p>
+        <p>I spend my time writing code, exploring how systems work at low levels, and building web projects from scratch. I enjoy the full stack — from bare-metal Assembly to interactive UIs.</p>
+        <p>My goal is to grow into a skilled software engineer who builds tools that make a real difference.</p>
+        <a href="#contact" class="btn-primary" style="margin-top:1.5rem;display:inline-block;">Let's Talk</a>
+      </div>
+      <div class="about-facts">
+        <div class="fact-card">
+          <span class="fact-num">03</span>
+          <span class="fact-label">Years Studying CS</span>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">∞</span>
+          <span class="fact-label">Lines of Code</span>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">ET</span>
+          <span class="fact-label">Based in Ethiopia</span>
+        </div>
+        <div class="fact-card">
+          <span class="fact-num">01</span>
+          <span class="fact-label">Goal: Build & Ship</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">02 / Skills</div>
+    <h2 class="section-title">What I Work With</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><span class="skill-icon">⟨/⟩</span><span>HTML</span></div>
+      <div class="skill-item"><span class="skill-icon">#</span><span>CSS</span></div>
+      <div class="skill-item"><span class="skill-icon">JS</span><span>JavaScript</span></div>
+      <div class="skill-item"><span class="skill-icon">C++</span><span>C++</span></div>
+      <div class="skill-item"><span class="skill-icon">ASM</span><span>Assembly</span></div>
+      <div class="skill-item"><span class="skill-icon">SVG</span><span>SVG</span></div>
+      <div class="skill-item"><span class="skill-icon">git</span><span>Git & GitHub</span></div>
+      <div class="skill-item skill-soon"><span class="skill-icon">…</span><span>More Coming</span></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-label">03 / Projects</div>
+    <h2 class="section-title">Things I've Built</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-num">01</div>
+        <h3>Tender Management System</h3>
+        <p>A system to manage and track tender processes. Built to handle real-world administrative workflows efficiently.</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <div class="project-links">
+          <a href="#" class="proj-link">GitHub →</a>
+          <a href="#" class="proj-link demo">Live Demo →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">02</div>
+        <h3>Calculator App</h3>
+        <p>A clean, functional calculator with smooth interactions. A classic project done right.</p>
+        <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+        <div class="project-links">
+          <a href="#" class="proj-link">GitHub →</a>
+          <a href="#" class="proj-link demo">Live Demo →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-num">03</div>
+        <h3>SVG Drawings</h3>
+        <p>Custom SVG illustrations and animations — hand-coded, no design tools. Pure markup art.</p>
+        <div class="project-tags"><span>SVG</span><span>CSS Animations</span></div>
+        <div class="project-links"><a href="#" class="proj-link">GitHub →</a></div>
+      </div>
+      <div class="project-card placeholder">
+        <div class="project-num">+</div>
+        <h3>More Coming Soon</h3>
+        <p>Currently building. Check back or watch the GitHub.</p>
+        <div class="project-links">
+          <a href="https://github.com/Real-Habesha" target="_blank" class="proj-link">GitHub Profile →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">04 / Contact</div>
+    <h2 class="section-title">Get In Touch</h2>
+    <p class="contact-intro">Have a project in mind, want to collaborate, or just want to say hi? I'm always open.</p>
+    <div class="contact-links">
+      <a href="mailto:www.tplink46@gmail.com" class="contact-card">
+        <span class="contact-icon">✉</span>
+        <div>
+          <span class="contact-type">Email</span>
+          <span class="contact-val">www.tplink46@gmail.com</span>
+        </div>
+      </a>
+      <a href="https://github.com/Real-Habesha" target="_blank" class="contact-card">
+        <span class="contact-icon">⌥</span>
+        <div>
+          <span class="contact-type">GitHub</span>
+          <span class="contact-val">Real-Habesha</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & built by <strong>Amanuel Abeje</strong> &nbsp;·&nbsp; Hawassa, Ethiopia</p>
+    <p class="footer-small">© 2025 · All rights reserved</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
